@@ -16,7 +16,7 @@ Url: http://www.andrewchatham.com/pyogg/
 
 %description
 This is a wrapper for libao, an audio device abstraction
-library. libao is available with ogg/vorbis at http://www.xiph.org.
+library.
 
 %prep
 %setup -q
