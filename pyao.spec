@@ -1,6 +1,6 @@
 %define name pyao
 %define version 0.82
-%define release %mkrel 10
+%define release %mkrel 11
 
 Summary: A wrapper for the ao libraries
 Name: %{name}
