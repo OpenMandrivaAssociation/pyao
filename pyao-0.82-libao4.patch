@@ -1,0 +1,46 @@
+From 04c28072eaddc2014b36a13de55408bd3185f2b1 Mon Sep 17 00:00:00 2001
+From: Frederic Crozat <fcrozat@mandriva.com>
+Date: Mon, 10 May 2010 19:29:28 +0200
+Subject: [PATCH] Fix build with libao4 (Debian)
+
+---
+ src/aomodule.c |    3 ++-
+ src/aomodule.h |    1 +
+ 2 files changed, 3 insertions(+), 1 deletions(-)
+
+diff --git a/src/aomodule.c b/src/aomodule.c
+index e1370af..48758eb 100644
+--- a/src/aomodule.c
++++ b/src/aomodule.c
+@@ -143,6 +143,7 @@ py_ao_new(PyObject *self, PyObject *args, PyObject *kwargs)
+ 
+   retobj = (ao_Object *) PyObject_New(ao_Object, &ao_Type);
+   retobj->dev = dev;
++  retobj->driver_id = driver_id;
+   return (PyObject *) retobj;
+ }
+ 
+@@ -184,7 +185,7 @@ py_ao_driver_info(PyObject *self, PyObject *args)
+ 
+     /* It's a method */
+     ao_Object *ao_self = (ao_Object *) self;
+-    info = ao_driver_info(ao_self->dev->driver_id);
++    info = ao_driver_info(ao_self->driver_id);
+ 
+   } else {
+ 
+diff --git a/src/aomodule.h b/src/aomodule.h
+index 2a9e6e1..45e1e2d 100644
+--- a/src/aomodule.h
++++ b/src/aomodule.h
+@@ -9,6 +9,7 @@
+ typedef struct {
+   PyObject_HEAD
+   ao_device *dev;
++  uint32_t driver_id;
+ } ao_Object;
+ 
+ static PyObject *Py_aoError;
+-- 
+1.7.1
+

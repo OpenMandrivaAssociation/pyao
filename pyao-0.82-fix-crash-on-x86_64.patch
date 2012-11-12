@@ -1,0 +1,48 @@
+diff -p -up pyao-0.82/src/aomodule.c.fix-crash pyao-0.82/src/aomodule.c
+--- pyao-0.82/src/aomodule.c.fix-crash	2003-07-24 08:52:59.000000000 +0200
++++ pyao-0.82/src/aomodule.c	2008-10-06 15:49:40.000000000 +0200
+@@ -4,7 +4,7 @@
+ static ao_option *
+ dict_to_options(PyObject *dict)
+ {
+-  int pos = 0;
++  Py_ssize_t pos = 0;
+   PyObject *key, *val;
+   ao_option *head = NULL;
+   int ret;
+@@ -71,7 +71,7 @@ parse_args(PyObject *args, PyObject *kwa
+   
+   *overwrite = 0;
+ 
+-  if(PyArg_ParseTupleAndKeywords(args, kwargs, "s|llllO!sl", 
++  if(PyArg_ParseTupleAndKeywords(args, kwargs, "s|iiiiO!si", 
+ 				 (char **) driver_name_kwlist,
+ 				 &driver_name, 
+ 				 &format->bits, 
+@@ -84,7 +84,7 @@ parse_args(PyObject *args, PyObject *kwa
+     *driver_id = ao_driver_id(driver_name);
+   } else {
+     PyErr_Clear();
+-    if(!(PyArg_ParseTupleAndKeywords(args, kwargs, "i|llllO!sl",
++    if(!(PyArg_ParseTupleAndKeywords(args, kwargs, "i|iiiiO!si",
+ 				     (char **) driver_id_kwlist,
+ 				     driver_id, 
+ 				     &format->bits, 
+@@ -141,7 +141,7 @@ py_ao_new(PyObject *self, PyObject *args
+     return NULL;
+   }
+ 
+-  retobj = (ao_Object *) PyObject_NEW(ao_Object, &ao_Type);
++  retobj = (ao_Object *) PyObject_New(ao_Object, &ao_Type);
+   retobj->dev = dev;
+   return (PyObject *) retobj;
+ }
+@@ -150,7 +150,7 @@ static void
+ py_ao_dealloc(ao_Object *self)
+ {
+   ao_close(self->dev);
+-  PyMem_DEL(self);
++  PyObject_Del(self);
+ }
+ 
+ static PyObject *
