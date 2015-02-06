@@ -1,7 +1,7 @@
 Summary: A wrapper for the ao libraries
 Name: pyao
 Version: 0.82
-Release: 15
+Release: 16
 Source0: http://ekyo.nerim.net/software/pyogg/%{name}-%{version}.tar.bz2
 #gw http://groups.google.com/group/pyogg/t/9e5e6f0971604ac1?hl=en
 Patch: pyao-0.82-fix-crash-on-x86_64.patch
