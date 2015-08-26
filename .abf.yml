@@ -1,2 +1,4 @@
+removed_sources:
+  pyao-0.82.tar.bz2: 71b14d6cc60239cede12c78fa6c7b24a688ec2c1
 sources:
-  "pyao-0.82.tar.bz2": 71b14d6cc60239cede12c78fa6c7b24a688ec2c1
+  pyao-0.82.tar.gz: 9b213da96030648a5fa589d5eab7e1791374e269
