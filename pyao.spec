@@ -11,7 +11,7 @@ License:	GPL
 Group:		Development/Python
 BuildRequires:	libao-devel
 BuildRequires:	python-devel
-Url:	http://ekyo.nerim.net/software/pyogg/index.html
+Url:	https://ekyo.nerim.net/software/pyogg/index.html
 
 %description
 This is a wrapper for libao, an audio device abstraction
